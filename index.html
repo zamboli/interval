@@ -22,7 +22,7 @@
     <div ng-controller="SimpleController">
         <br />
         <form>
-            Length:
+            Length(seconds):
             <input type="number" min="0" max="1000" placeholder="10" data-ng-model="newInterval.length"/>
             <input type="submit" value="Add" data-ng-click="addInterval()"/>
         </form>
@@ -31,7 +31,7 @@
         
         <ol>
             <li data-ng-repeat="interval in intervals">
-                {{interval}}
+                {{interval.length + "s"}}
                 <button ng-click="removeInterval($index)">remove</button>
             </li>
         </ol> 
