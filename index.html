@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html data-ng-app="myModule">
+<html data-ng-app="myModule" ng-controller="timeMaster">
 
 <head>  
-  <title>Interval App</title>
+<title ng-bind-template="{{countNow}} - Interval Timer">Interval Timer</title>
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/angular-route.min.js"></script>
     <script src="Scripts/app.js"></script>
@@ -12,7 +12,7 @@
 <body>
     <audio id="gong" src="gong.wav" preload="auto"></audio>
     <h1>interval timer</h1>
-    <div ng-controller="timeMaster">
+    <div>
         remaining: {{countNow}}
         <br />
         interval: {{intNumber}}
@@ -23,7 +23,7 @@
         <br />
         <form>
             Length(seconds):
-            <input type="number" min="0" max="1000" placeholder="10" data-ng-model="newInterval.length"/>
+            <input type="number" min="0" max="10000" placeholder="10" data-ng-model="newInterval.length"/>
             <input type="submit" value="Add" data-ng-click="addInterval()"/>
         </form>
         <br />
