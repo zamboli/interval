@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>View 1</h2>
+    <br />
+
+    <form>
+        Length:
+        <input type="number" min="0" max="1000" value="10" data-ng-model="newInterval.length"/>
+        <input type="submit" value="Add" data-ng-click="addInterval()"/>
+    </form>
+
+    <br />
+
+    <h2>Intervals</h2>
+    <ol>
+        <li data-ng-repeat="interval in intervals">{{interval}}
+    </ol> 
+    <br />
+    <a href="#/view2">View 2</a>
+</div>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html data-ng-app="myModule">
+
+<head>  
+  <title>Interval App</title>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/app.js"></script>
+
+</head>
+
+<body>
+    <audio id="gong" src="gong.wav" preload="auto"></audio>
+    <h1>interval timer</h1>
+    <div ng-controller="timeMaster">
+        interval: {{intNumber}}
+        <br />
+        remaining: {{countNow}}
+        <br />
+        <button ng-click="start()">start</button>
+    </div>
+    <div ng-controller="SimpleController">
+        <br />
+        <form>
+            Length:
+            <input type="number" min="0" max="1000" placeholder="10" data-ng-model="newInterval.length"/>
+            <input type="submit" value="Add" data-ng-click="addInterval()"/>
+        </form>
+        <br />
+        <h2>Intervals</h2>
+        
+        <ol>
+            <li data-ng-repeat="interval in intervals">
+                {{interval}}
+                <button ng-click="removeInterval($index)">remove</button>
+            </li>
+        </ol> 
+        <br />
+     </div>
+  
+
+</body>
+</html>
