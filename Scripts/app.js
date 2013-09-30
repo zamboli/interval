@@ -76,12 +76,12 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
     $scope.timers = timers;
     $scope.intervals = Intervals;
     $scope.start = function() { 
-        timers.stop();
+        /*timers.stop();
         //$scope.intNumber = 0;
         //$scope.countNow = $scope.intervals[0].length;
         var i = 0;
         var j = $scope.intervals[i].length;
-	    timers.add( function() {
+	timers.add( function() {
             $scope.countNow = j;
 	        $scope.intNumber = i + 1;
             j--;
@@ -91,8 +91,25 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
                 if (i  === $scope.intervals.length) return false;
                 j = $scope.intervals[i].length; 
 	        }
-        });
-        timers.start();
+         });
+         timers.start(); */
+	var i = 0;
+	var j = $scope.intervals[i].length;
+	var x = Date.now();
+	while (true) {
+	    
+	    if ( Date.now() > (x + 10) ) {
+		$scope.countNow = j;
+		j--;
+		if ( j < 0 ) {
+		    i++;
+		    j = $scope.intervals[i].length;
+		} 
+		x = Date.now();    
+	    }
+	    console.log("looped the loop");
+	    if ( i > $scope.intervals.length ) return false;       
+	}
     };
 };
 
