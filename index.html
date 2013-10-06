@@ -6,6 +6,7 @@
     <script src="Scripts/angular.min.js"></script>
     <script src="Scripts/angular-route.min.js"></script>
     <script src="Scripts/app.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css"></link>
 
 </head>
 
@@ -13,26 +14,24 @@
     <audio id="gong" src="gong.wav" preload="auto"></audio>
     <h1>interval timer</h1>
     <div>
-        remaining: {{countNow}}
+        <span id="count">{{countNow}}</span>
         <br />
         interval: {{intNumber}}
         <br />
         <button ng-click="start()">start</button>
     </div>
     <div ng-controller="SimpleController">
-        <br />
+        <h2>Intervals</h2>
+        
         <form>
             Length(seconds):
             <input type="number" min="0" max="10000" placeholder="10" data-ng-model="newInterval.length"/>
             <input type="submit" value="Add" data-ng-click="addInterval()"/>
         </form>
-        <br />
-        <h2>Intervals</h2>
-        
         <ol>
-            <li data-ng-repeat="interval in intervals">
+            <li ng-class="{going: $index==intNumber-1}" data-ng-repeat="interval in intervals">
                 {{interval.length + "s"}}
-                <button ng-click="removeInterval($index)">remove</button>
+                <button id="remove" ng-click="removeInterval($index)">x</button>
             </li>
         </ol> 
         <br />
