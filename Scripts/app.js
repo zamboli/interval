@@ -73,8 +73,8 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
         }
     }
     
-    $scope.timers = timers;
     $scope.intervals = Intervals;
+    $scope.countNow = 0, $scope.intNumber = 0;
     $scope.start = function() { 
         /*timers.stop();
         //$scope.intNumber = 0;
@@ -93,23 +93,28 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
 	        }
          });
          timers.start(); */
-	var i = 0;
-	var j = $scope.intervals[i].length;
-	var x = Date.now();
-	while (true) {
-	    
-	    if ( Date.now() > (x + 10) ) {
-		$scope.countNow = j;
-		j--;
-		if ( j < 0 ) {
-		    i++;
-		    j = $scope.intervals[i].length;
-		} 
-		x = Date.now();    
-	    }
-	    console.log("looped the loop");
-	    if ( i > $scope.intervals.length ) return false;       
-	}
+	    var start = +(new Date), i = 0, j = $scope.intervals[i].length;
+	    var intervalID = window.setInterval(function() {
+	    	$scope.$apply(function(){
+                $scope.countNow = j;
+                $scope.intNumber = i + 1;
+                j--;
+                if (j < 0) { 
+                    play_multi_sound('gong');
+                    i++; 
+                    if (i  === $scope.intervals.length) {
+                        window.clearInterval(intervalID); 
+                        $scope.intNumber = 0; 
+                        return false;
+                    }
+                    j = $scope.intervals[i].length; 
+                }
+	        		var now = +(new Date);
+                //    $scope.countNow = Math.round((now - start)/1000);
+                console.log("i");
+	    	});
+	    }, 1000);
+        intervalID();
     };
 };
 
