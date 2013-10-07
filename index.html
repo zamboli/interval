@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html data-ng-app="myModule" data-ng-controller="timeMaster">
 
-<head>  
+<head> 
+    <meta charset="utf-8" />
     <title data-ng-bind-template="{{countNow}} - Interval Timer">Interval Timer</title>
-    <link href="style.css" rel="stylesheet" type="text/css"></link>
+    <link href="style.css" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -28,7 +29,7 @@
         <ol>
             <li data-ng-class="{going: $index==intNumber-1}" data-ng-repeat="interval in intervals">
                 {{interval.length + "s"}}
-                <button id="remove" ng-click="removeInterval($index)">x</button>
+                <button id="remove" data-ng-click="removeInterval($index)">x</button>
             </li>
         </ol> 
         <br />
