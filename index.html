@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html data-ng-app="myModule" ng-controller="timeMaster">
+<html data-ng-app="myModule" data-ng-controller="timeMaster">
 
 <head>  
-    <title ng-bind-template="{{countNow}} - Interval Timer">Interval Timer</title>
+    <title data-ng-bind-template="{{countNow}} - Interval Timer">Interval Timer</title>
     <link href="style.css" rel="stylesheet" type="text/css"></link>
 
 </head>
@@ -15,9 +15,9 @@
         <br />
         interval: {{intNumber}}
         <br />
-        <button ng-click="start()">start</button>
+        <button data-ng-click="start()">start</button>
     </div>
-    <div ng-controller="SimpleController">
+    <div data-ng-controller="SimpleController">
         <h2>Intervals</h2>
         
         <form>
@@ -26,7 +26,7 @@
             <input type="submit" value="Add" data-ng-click="addInterval()"/>
         </form>
         <ol>
-            <li ng-class="{going: $index==intNumber-1}" data-ng-repeat="interval in intervals">
+            <li data-ng-class="{going: $index==intNumber-1}" data-ng-repeat="interval in intervals">
                 {{interval.length + "s"}}
                 <button id="remove" ng-click="removeInterval($index)">x</button>
             </li>
