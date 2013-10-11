@@ -101,7 +101,7 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
                         $scope.intNumber = i + 1;
                         j--;
                         if (j < 1) { 
-                            play_multi_sound('gong');
+                            $timeout(play_multi_sound('gong'), 850);
                             i++; 
                             if (i  === $scope.intervals.length) {
                                 clearInterval(intervalID); 
