@@ -73,49 +73,60 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
         }
     }
     
+    var intervalID, i, j;
     $scope.intervals = Intervals;
     $scope.countNow = 0, $scope.intNumber = 0;
+    $scope.status = "start";
     $scope.start = function() { 
-        /*timers.stop();
-        //$scope.intNumber = 0;
-        //$scope.countNow = $scope.intervals[0].length;
-        var i = 0;
-        var j = $scope.intervals[i].length;
-	timers.add( function() {
-            $scope.countNow = j;
-	        $scope.intNumber = i + 1;
-            j--;
-            if (j < 0) { 
-                play_multi_sound('gong');
-                i++; 
-                if (i  === $scope.intervals.length) return false;
-                j = $scope.intervals[i].length; 
-	        }
-         });
-         timers.start(); */
-	    var start = +(new Date), i = 0, j = $scope.intervals[i].length;
-	    var intervalID = window.setInterval(function() {
-	    	$scope.$apply(function(){
-                $scope.countNow = j;
-                $scope.intNumber = i + 1;
-                j--;
-                if (j < 1) { 
-                    play_multi_sound('gong');
-                    i++; 
-                    if (i  === $scope.intervals.length) {
-                        window.clearInterval(intervalID); 
-                        
-			$timeout(function(){$scope.countNow = 0; $scope.intNumber = 0;} ,1000);
-                        return false;
-                    }
-                    j = $scope.intervals[i].length; 
-                }
-	        		var now = +(new Date);
-                //    $scope.countNow = Math.round((now - start)/1000);
-                console.log("i");
-	    	});
-	    }, 1000);
-        intervalID();
+        switch ($scope.status) {
+            case "pause":
+            
+                //j = $scope.countNow, i = $scope.intNumber - 1;
+                clearInterval(intervalID);
+                $scope.status = "resume";
+                console.log($scope.status);
+                return false;
+                break;
+
+            case "start":
+
+                i = 0, j = $scope.intervals[i].length;
+                
+            default:
+                
+                $scope.status = "pause";
+                intervalID = setInterval(function() {
+                    $scope.$apply(function(){
+                        $scope.countNow = j;
+                        $scope.intNumber = i + 1;
+                        j--;
+                        if (j < 1) { 
+                            play_multi_sound('gong');
+                            i++; 
+                            if (i  === $scope.intervals.length) {
+                                clearInterval(intervalID); 
+                                $timeout(function(){
+                                    $scope.countNow = 0;
+                                    $scope.intNumber = 0;
+                                    $scope.status = "start";
+                                } ,1000);
+                                return false;
+                            }
+                            j = $scope.intervals[i].length; 
+                        }
+                        var now = +(new Date);
+                        //    $scope.countNow = Math.round((now - start)/1000);
+                    });
+                }, 1000);
+                intervalID;
+                break;
+        };
+    };
+    $scope.reset = function() {
+        clearInterval(intervalID);
+        $scope.status = "start";
+        $scope.countNow = 0;
+        $scope.intNumber = 0;
     };
 };
 

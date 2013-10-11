@@ -21,7 +21,8 @@ li:nth-child(even) {
 li.going {
     background: gold;
     color: black;
-    transition: all .17s ease-in-out;
+    transition: all .17s ease-in;
+    transition: all .17s ease-out;
 }
  #count {
     font-size: 4em;
