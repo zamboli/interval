@@ -99,12 +99,13 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
                 $scope.countNow = j;
                 $scope.intNumber = i + 1;
                 j--;
-                if (j < 0) { 
+                if (j < 1) { 
                     play_multi_sound('gong');
                     i++; 
                     if (i  === $scope.intervals.length) {
                         window.clearInterval(intervalID); 
-                        $scope.intNumber = 0; 
+                        
+			$timeout(function(){$scope.countNow = 0; $scope.intNumber = 0;} ,1000);
                         return false;
                     }
                     j = $scope.intervals[i].length; 
