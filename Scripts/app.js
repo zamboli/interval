@@ -78,6 +78,10 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
     $scope.countNow = 0, $scope.intNumber = 0;
     $scope.status = "start";
     $scope.start = function() { 
+        if (Intervals.length === 0) {
+            showError();
+            return false;
+        }
         switch ($scope.status) {
             case "pause":
             
@@ -127,6 +131,11 @@ controllers.timeMaster = function ($scope, $timeout, Intervals) {
         $scope.status = "start";
         $scope.countNow = 0;
         $scope.intNumber = 0;
+    };
+    var showError = function() {
+        angular.element(document.querySelector("#error")).css({"display":"inline"});
+        $timeout((function(){angular.element(document.querySelector("#error")).css({"display":"none"});}), 3001);
+
     };
 };
 

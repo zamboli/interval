@@ -33,3 +33,16 @@ li.going {
  #remove {
     float: right;
  }
+ form {
+     position: relative;
+ }
+ #error {
+    position: absolute;
+    width: 248px;
+    height: 81px;
+    left: -120px;
+    top:-90px;
+    background-image: url("error_bitch.png");
+    display: none;
+}
+
