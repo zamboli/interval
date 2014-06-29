@@ -1,1 +1,1 @@
-Mommy, wow! I can fucking count!
+I can count many times.
